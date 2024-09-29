@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use App\Models\User;
 use App\UserStatus;
 use App\UserType;
@@ -77,5 +80,15 @@ class AuthController extends Controller
             'pageTitle'=> 'Forgot Password'
         ];
         return view('back.pages.auth.forgot',$data);
+    }
+
+    public function sendPasswordResetLink(Request $request){
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+        ], [
+            'email.required' => 'The email is required',
+            'email.email' => 'Invalid email address',
+            'email.exists' => 'The email does not exist in the system',
+        ]);
     }
 }
