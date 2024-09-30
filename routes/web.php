@@ -9,8 +9,8 @@ Route::get('/', function () {
 });
 
 //Route test
-Route::view('/examble-page','examble-page');
-Route::view('/examble-auth','examble-auth');
+Route::view('/example-page','example-page');
+Route::view('/example-auth','example-auth');
 
 //Route Admin
 
@@ -19,9 +19,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::controller(AuthController::class)->group(function(){
             Route::get('/login','loginForm')->name('login');
             Route::post('/login','loginHandler')->name('login_handler');
-            Route::get('/fotgot-password','forgotForm')->name('forgot');
+            Route::get('/forgot-password','forgotForm')->name('forgot');
             Route::post('/send-password-reset-link','sendPasswordResetLink')->name('send_password_reset_link');
             Route::get('/password/reset/{token}','resetForm')->name('reset_password_form');
+            Route::post('/reset_password_handler','resetPasswordHandler')->name('reset_password_handler');
         });
     });
 
