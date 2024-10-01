@@ -50,12 +50,12 @@ class AuthController extends Controller
             ]);
         }
 
-        $creds = array(
+        $cred = array(
             $fieldType => $request->login_id,
             'password' => $request->password
         );
 
-        if(Auth::attempt($creds)){
+        if(Auth::attempt($cred)){
             if(auth()->user()->status === UserStatus::Inactive){
                 Auth::logout();
                 $request->session()->invalidate();
@@ -67,7 +67,7 @@ class AuthController extends Controller
                 Auth::logout();
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
-                return redirect()->route('admin.login')->withInput()->with('fail','Your account is currently pending approval. Please check your email for further intructions or contact at (support@smyth.test) assistance.');
+                return redirect()->route('admin.login')->withInput()->with('fail','Your account is currently pending approval. Please check your email for further instructions or contact at (support@smyth.test) assistance.');
             }
             
             return redirect()->route('admin.dashboard');
@@ -155,6 +155,13 @@ class AuthController extends Controller
         if (!$isTokenExists) {
             return redirect()->route('admin.forgot')->with('fail','Invalid token. Please reset another reset password link.');
         } else {
+
+            $diffMins = Carbon::createFromFormat('Y-m-d H:i:s', $isTokenExists->created_at)->diffInMinutes(Carbon::now());
+
+            if($diffMins > 15){
+                return redirect()->route('admin.forgot')->with('fail','The link has expired. Please request new link.');
+            }
+
             $data = [
                 'pageTitle'    => 'Reset password',
                 'token'        => $token,
@@ -196,8 +203,6 @@ class AuthController extends Controller
             'subject' => 'Password changed',
             'body' => $mail_body,
         );
-
-
         
         if (CMail::send($mailConfig)) {
             DB::table('password_reset_tokens')->where([
