@@ -4,8 +4,9 @@
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
             <div class="pd-20 card-box height-100-p">
                 <div class="profile-photo">
-                    <a href="" class="edit-avatar"><i class="fa fa-pencil"></i></a>
-                    <img src="{{ $user->picture }}" alt="" class="avatar-photo">
+                    <a href="javascript:;" onclick="event.preventDefault();document.getElementById('profilePictureFile').click();" class="edit-avatar"><i class="fa fa-pencil"></i></a>
+                    <img src="{{ $user->picture }}" alt="" class="avatar-photo" id="profilePicturePreview">
+                    <input type="file" name="profilePictureFile" id="profilePictureFile" class="d-none" style="opacity: 0">
                 </div>
                 <h5 class="text-center h5 mb-0">{{ $user->name }}</h5>
                 <p class="text-center text-muted font-14">
@@ -73,8 +74,8 @@
                                         <div class="row">
                                             <div class="col-md-12 mb-3">
                                                 <div class="form-group">
-                                                    <label for="">Full name</label>
-                                                    <input  type="text" class="form-control" wire:model="name" placeholder="Enter full name">
+                                                    <label for="name">Full name</label>
+                                                    <input  type="text" class="form-control" wire:model="name" placeholder="Enter full name" id="name" autocomplete="off">
                                                     @error('name')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -83,8 +84,8 @@
                                     
                                             <div class="col-md-6 mb-3">
                                                 <div class="form-group">
-                                                    <label for="">Email</label>
-                                                    <input  type="email" class="form-control" wire:model="email" placeholder="Enter email address" disabled>
+                                                    <label for="email">Email</label>
+                                                    <input  type="email" class="form-control" wire:model="email" placeholder="Enter email address" disabled autocomplete="off" id="email">
                                                     @error('email')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -93,8 +94,8 @@
                                     
                                             <div class="col-md-6 mb-3">
                                                 <div class="form-group">
-                                                    <label for="">Username</label>
-                                                    <input  type="text" class="form-control" wire:model="username" placeholder="Enter username">
+                                                    <label for="username">Username</label>
+                                                    <input  type="text" class="form-control" wire:model="username" placeholder="Enter username" id="username" autocomplete="on">
                                                     @error('username')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -103,8 +104,8 @@
                                     
                                             <div class="col-md-12 mb-3">
                                                 <div class="form-group">
-                                                    <label for="">Bio</label>
-                                                    <textarea wire:model="bio"  cols="4" rows="4" class="form-control" placeholder="Type your bio..."></textarea>
+                                                    <label for="bio">Bio</label>
+                                                    <textarea wire:model="bio"  cols="4" rows="4" class="form-control" placeholder="Type your bio..." id="bio"></textarea>
                                                     @error('bio')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror

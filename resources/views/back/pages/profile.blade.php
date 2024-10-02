@@ -25,3 +25,43 @@
 @livewire('admin.profile')
 
 @endsection
+
+@push('scripts')
+    <script>
+        $('input[type="file"][id="profilePictureFile"]').Kropify({
+        preview:'image#profilePicturePreview',
+        viewMode:1,
+        aspectRatio:1,
+        cancelButtonText:'Cancel',
+        resetButtonText:'Reset',
+        cropButtonText:'Crop & update',
+        processURL:'{{ route('admin.update_profile_picture') }}',
+        maxSize:2097152,
+        showLoader:true,
+        success:function(data){
+         // console.log(data);
+            if(data.status == 1){
+                Livewire.dispatch('updateTopUserInfo',[]);
+                Livewire.dispatch('updateProfile',[]);
+                $().notifa({
+                    vers: 2,
+                    cssClass: 'success', 
+                    html: data.message,
+                    delay: 2500
+                });
+            }else{
+                $().notifa({
+                    vers: 2,
+                    cssClass: 'error', 
+                    html: data.message,
+                    delay: 2500
+                });
+            }
+          },
+          errors:function(error, text){
+             console.log(text);
+          },
+        });
+    </script>
+@endpush
+

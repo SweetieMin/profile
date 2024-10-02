@@ -29,6 +29,10 @@ class Profile extends Component
 
     }
 
+    protected $listeners = [
+        'updateProfile' => '$refresh'
+    ];
+
     public function updatePersonalDetails(){
         $user = User::findOrFail(auth()->id());
 
