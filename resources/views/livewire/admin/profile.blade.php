@@ -122,12 +122,49 @@
                             <!-- Personal details Tab End -->
                             <!-- Update password Tab start -->
                             <div class="tab-pane fade {{ $tab === 'update_password' ? 'active show' : '' }}" id="update_password" role="tabpanel">
-                                password
+                                <div class="pd-20 profile-task-wrap">
+                                                                    <form wire:submit="updatePassword()">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="current_password">Current password</label>
+                                                <input type="password" class="form-control" wire:model="current_password" placeholder="Enter current password">
+                                                @error('current_password')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="new_password">New password</label>
+                                                <input type="password" class="form-control" wire:model="new_password" placeholder="Enter new password">
+                                                @error('new_password')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="new_password_confirmation">Confirm new password</label>
+                                                <input type="password" class="form-control" wire:model="new_password_confirmation" placeholder="Confirm new password">
+                                                @error('new_password_confirmation')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-center mt-2">
+                                        <button type="submit" class="btn btn-primary">Update password</button>
+                                    </div>
+                                </form>
+                                </div>
                             </div>
                             <!-- Update password Tab End -->
                             <!-- Social links Tab start -->
                             <div class="tab-pane fade {{ $tab === 'social_links' ? 'active show' : '' }}" id="social_links" role="tabpanel">
-                                social
+                                <div class="pd-20 profile-task-wrap">
+                                    social link
+                                </div>
                             </div>
                             <!-- Social links Tab End -->
                         </div>
