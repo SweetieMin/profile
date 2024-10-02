@@ -123,47 +123,89 @@
                             <!-- Update password Tab start -->
                             <div class="tab-pane fade {{ $tab === 'update_password' ? 'active show' : '' }}" id="update_password" role="tabpanel">
                                 <div class="pd-20 profile-task-wrap">
-                                                                    <form wire:submit="updatePassword()">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="current_password">Current password</label>
-                                                <input type="password" class="form-control" wire:model="current_password" placeholder="Enter current password">
-                                                @error('current_password')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
+                                    <form wire:submit="updatePassword()">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="current_password">Current password</label>
+                                                    <input type="password" class="form-control" wire:model="current_password" placeholder="Enter current password">
+                                                    @error('current_password')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="new_password">New password</label>
+                                                    <input type="password" class="form-control" wire:model="new_password" placeholder="Enter new password">
+                                                    @error('new_password')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="new_password_confirmation">Confirm new password</label>
+                                                    <input type="password" class="form-control" wire:model="new_password_confirmation" placeholder="Confirm new password">
+                                                    @error('new_password_confirmation')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="new_password">New password</label>
-                                                <input type="password" class="form-control" wire:model="new_password" placeholder="Enter new password">
-                                                @error('new_password')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
+                                        <div class="form-group text-center mt-2">
+                                            <button type="submit" class="btn btn-primary">Update password</button>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="new_password_confirmation">Confirm new password</label>
-                                                <input type="password" class="form-control" wire:model="new_password_confirmation" placeholder="Confirm new password">
-                                                @error('new_password_confirmation')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group text-center mt-2">
-                                        <button type="submit" class="btn btn-primary">Update password</button>
-                                    </div>
-                                </form>
+                                    </form>
                                 </div>
                             </div>
                             <!-- Update password Tab End -->
                             <!-- Social links Tab start -->
                             <div class="tab-pane fade {{ $tab === 'social_links' ? 'active show' : '' }}" id="social_links" role="tabpanel">
                                 <div class="pd-20 profile-task-wrap">
-                                    social link
+                                    <form method="POST" wire:submit="updateSocialLinks()" >
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="facebook_url"><b>Facebook</b></label>
+                                                    <input type="text" class="form-control" wire:model='facebook_url' placeholder="Facebook URL">
+                                                    @error('facebook_url')
+                                                        <span class="text-danger ml-1">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="instagram_url"><b>Instagram</b></label>
+                                                    <input type="text" class="form-control" wire:model='instagram_url' placeholder="Instagram URL">
+                                                    @error('instagram_url')
+                                                        <span class="text-danger ml-1">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="youtube_url"><b>Youtube</b></label>
+                                                    <input type="text" class="form-control" wire:model='youtube_url' placeholder="Youtube URL">
+                                                    @error('youtube_url')
+                                                        <span class="text-danger ml-1">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="github_url"><b>Github</b></label>
+                                                    <input type="text" class="form-control" wire:model='github_url' placeholder="Github URL">
+                                                    @error('github_url')
+                                                        <span class="text-danger ml-1">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-center mt-2">
+                                            <button type="submit" class="btn btn-primary">Update social</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                             <!-- Social links Tab End -->
