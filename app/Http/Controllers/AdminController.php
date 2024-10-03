@@ -58,4 +58,11 @@ class AdminController extends Controller
         }
         
     }
+
+    public function generalSettings(Request $request){
+        $data = [
+            'pageTitle' => 'General settings',
+        ];
+        return view('back.pages.general-settings',$data);
+    }
 }
