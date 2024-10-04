@@ -9,7 +9,6 @@ class UserSocialLink extends Model
 {   
     
     use HasFactory;
-
     protected $fillable = [
         'facebook_url',
         'instagram_url',

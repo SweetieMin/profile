@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
 use SawaStacks\Utils\Library\Kropify;
+use OwenIt\Auditing\Models\Audit;
 
 
 class AdminController extends Controller
@@ -126,5 +127,15 @@ class AdminController extends Controller
         } else {
             return response()->json(['status'=>0,'message'=>'Make sure you updated general settings form first.']);
         }
+    }
+
+    public function activityLog(){
+        $audits = Audit::where('auditable_type', 'App\Models\GeneralSetting')->get();
+        $data = [
+            'pageTitle' => 'Activity Log',
+            'audits' => $audits,
+        ];
+
+        return view('back.pages.activity-log', $data);
     }
 }

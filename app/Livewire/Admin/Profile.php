@@ -57,7 +57,7 @@ class Profile extends Component
 
         $this->validate([
             'name' => 'required',
-            'username' => 'required|unique:users,username,'.$user->id,
+            'username' => 'required|max:10|unique:users,username,'.$user->id,
         ]);
 
         $user->name = $this->name;

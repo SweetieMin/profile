@@ -153,9 +153,10 @@
             @livewire('admin.top-user-info')
 
             <div class="github-link">
-                <a href="https://github.com/dropways/deskapp" target="_blank"><img
+                <a href="" target="_blank"><img
                         src="/back/vendors/images/github.svg" alt="" /></a>
             </div>
+        
         </div>
     </div>
 
@@ -301,6 +302,17 @@
                             <span class="micon bi bi-receipt-cutoff"></span><span class="mtext">Invoice</span>
                         </a>
                     </li>
+
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon fa fa-newspaper-o"></span><span class="mtext"> Activity Log </span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="{{ route('admin.activity_log') }}">General Settings</a></li>
+                            <li><a href="">User</a></li>
+                        </ul>
+                    </li>
+
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>
