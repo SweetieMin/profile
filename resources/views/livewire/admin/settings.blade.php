@@ -74,11 +74,35 @@
                             </div>
                             <form action="{{ route('admin.update_logo') }}" method="POST" enctype="multipart/form-data" id="updateLogoForm">
                                 @csrf
-                                <div class="mb-2">
+
+                                <div class=" mb-2">
                                     <input type="file" name="site_logo" id="" class="form-control">
+                                    
                                     <span class="text-danger ml-1"></span>
                                 </div>
+                                                                
+                                <div class="form-group text-center mt-2">
                                     <button type="submit" class="btn btn-primary">Change Logo</button>
+                                </div>
+                                    
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Favicon</h6>
+                            <div class="mb-2 mt-1" style="max-width: 100px">
+                                <img wire:ignore src="" alt="" class="img-thumbnail"  data-ijabo-default-img="/images/site/{{ isset(settings()->site_favicon) ? settings()->site_favicon : '' }}" id="preview_side_favicon">
+                            </div>
+                            <form action="{{ route('admin.update_favicon') }}" method="POST" enctype="multipart/form-data" id="updateFaviconForm">
+                                @csrf
+                                <div class=" mb-2">
+                                    <input type="file" name="site_favicon" id="" class="form-control">
+                                    
+                                    <span class="text-danger ml-1"></span>
+                                </div>
+
+                                <div class="form-group text-center mt-2">
+                                    <button type="submit" class="btn btn-primary">Change Favicon</button>
+                                </div>
                             </form>
                         </div>
                     </div>

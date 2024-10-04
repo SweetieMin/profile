@@ -34,6 +34,8 @@ class Settings extends Component
             $this->site_phone = $settings->site_phone;
             $this->site_meta_keywords = $settings->site_meta_keywords;
             $this->site_meta_description = $settings->site_meta_description;
+            $this->site_logo = $settings->site_logo;
+            $this->site_favicon = $settings->site_favicon;
         }
     }
 
