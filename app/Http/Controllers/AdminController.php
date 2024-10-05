@@ -158,4 +158,11 @@ class AdminController extends Controller
 
         return view('back.pages.list-users', $data);
     }
+
+    public function categoriesPage(Request $request){
+        $data = [
+            'pageTitle' => 'Manage categories',
+        ];
+        return view('back.pages.categories_page',$data);
+    }
 }
