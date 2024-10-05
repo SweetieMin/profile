@@ -8,7 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Site favicon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/site/{{ isset(settings()->site_favicon) ? settings()->site_favicon : '' }}" />
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="/images/site/{{ isset(settings()->site_favicon) ? settings()->site_favicon : '' }}" />
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -21,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/icon-font.min.css" />
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/style.css" />
     <link rel="stylesheet" href="/extra-assets/ijabo/css/ijabo.min.css">
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
     @kropifyStyles
     @stack('stylesheets')
 </head>
@@ -153,10 +155,9 @@
             @livewire('admin.top-user-info')
 
             <div class="github-link">
-                <a href="" target="_blank"><img
-                        src="/back/vendors/images/github.svg" alt="" /></a>
+                <a href="" target="_blank"><img src="/back/vendors/images/github.svg" alt="" /></a>
             </div>
-        
+
         </div>
     </div>
 
@@ -258,8 +259,10 @@
     <div class="left-side-bar">
         <div class="brand-logo">
             <a href="/">
-                <img src="/images/site/{{ isset(settings()->site_logo) ? settings()->site_logo : '' }}" alt="" class="dark-logo site_logo" />
-                <img src="/images/site/{{ isset(settings()->site_logo) ? settings()->site_logo : '' }}" alt="" class="light-logo site_logo" />
+                <img src="/images/site/{{ isset(settings()->site_logo) ? settings()->site_logo : '' }}" alt=""
+                    class="dark-logo site_logo" />
+                <img src="/images/site/{{ isset(settings()->site_logo) ? settings()->site_logo : '' }}" alt=""
+                    class="light-logo site_logo" />
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
@@ -269,21 +272,24 @@
             <div class="sidebar-menu">
                 <ul id="accordion-menu">
                     <li>
-                        <a href="{{ route('admin.dashboard') }}" class="dropdown-toggle no-arrow">
-                            <span class="micon fa fa-home"></span><span class="mtext">Home</span>
+                        <a href="{{ route('admin.dashboard') }}" class="dropdown-toggle no-arrow {{ Route::is('admin.dashboard') ? 'active' : '' }}">
+                            <span class="micon"><lord-icon src="https://cdn.lordicon.com/epietrpn.json"
+                                    trigger="hover" stroke="light">
+                                </lord-icon></span>
+                            <span class="mtext">Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.list_users') }}" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('admin.list_users') }}" class="dropdown-toggle no-arrow {{ Route::is('admin.list_users') ? 'active' : '' }}">
                             <span class="micon fa fa-users"></span><span class="mtext">Users</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.dashboard') }}" class="dropdown-toggle no-arrow">
+                        <a href="" class="dropdown-toggle no-arrow ">
                             <span class="micon fa fa-th-list"></span><span class="mtext">Categories</span>
                         </a>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown {{ Route::is('admin.posts*') ? 'active' : '' }}">
                         <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon fa fa-newspaper-o"></span><span class="mtext"> Posts </span>
                         </a>
@@ -292,7 +298,7 @@
                             <li><a href="">Posts</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown {{ Route::is('admin.shop*') ? 'active' : '' }}">
                         <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon fa fa-shopping-bag"></span>
                             <span class="mtext">Shop</span>
@@ -303,21 +309,25 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="invoice.html" class="dropdown-toggle no-arrow">
+                        <a href="invoice.html" class="dropdown-toggle no-arrow {{ Route::is('admin.invoice') ? 'active' : '' }}">
                             <span class="micon bi bi-receipt-cutoff"></span><span class="mtext">Invoice</span>
                         </a>
                     </li>
-
+        
                     <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon fa fa-pencil-square-o"></span><span class="mtext"> Activity Log </span>
+                        <a href="javascript:;" class="dropdown-toggle {{ Route::is('admin.activity_log*') || Route::is('admin.user_log*') ? 'active' : '' }}">
+                            <span class="micon">
+                                <lord-icon src="https://cdn.lordicon.com/lsrcesku.json" trigger="hover"
+                                    stroke="light">
+                                </lord-icon></span><span class="mtext"> Activity Log
+                            </span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="{{ route('admin.activity_log') }}">General Settings</a></li>
-                            <li><a href="{{ route('admin.user_log') }}">User</a></li>
+                            <li><a href="{{ route('admin.activity_log') }}" class="{{ Route::is('admin.activity_log') ? 'active' : '' }}">General Settings</a></li>
+                            <li><a href="{{ route('admin.user_log') }}" class="{{ Route::is('admin.user_log') ? 'active' : '' }}">User</a></li>
                         </ul>
                     </li>
-
+        
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>
@@ -325,13 +335,13 @@
                         <div class="sidebar-small-cap">Settings</div>
                     </li>
                     <li>
-                        <a href="{{ route('admin.profile') }}" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('admin.profile') }}" class="dropdown-toggle no-arrow {{ Route::is('admin.profile') ? 'active' : '' }}">
                             <span class="micon fa fa-user-circle"></span>
                             <span class="mtext"> Profile </span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.settings') }}" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('admin.settings') }}" class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}">
                             <span class="micon fa fa-cogs"></span>
                             <span class="mtext"> General </span>
                         </a>
@@ -339,6 +349,7 @@
                 </ul>
             </div>
         </div>
+        
     </div>
     <div class="mobile-menu-overlay"></div>
 
@@ -365,13 +376,13 @@
     @kropifyScripts
     <script>
         window.addEventListener('showToastr', function(event) {
-        $().notifa({
-            vers: 2,
-            cssClass: event.detail[0].type, 
-            html: event.detail[0].message,
-            delay: 2500
+            $().notifa({
+                vers: 2,
+                cssClass: event.detail[0].type,
+                html: event.detail[0].message,
+                delay: 2500
+            });
         });
-    });
     </script>
 
     @stack('scripts')
