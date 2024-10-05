@@ -274,6 +274,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('admin.list_users') }}" class="dropdown-toggle no-arrow">
+                            <span class="micon fa fa-users"></span><span class="mtext">Users</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('admin.dashboard') }}" class="dropdown-toggle no-arrow">
                             <span class="micon fa fa-th-list"></span><span class="mtext">Categories</span>
                         </a>
@@ -305,11 +310,11 @@
 
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon fa fa-newspaper-o"></span><span class="mtext"> Activity Log </span>
+                            <span class="micon fa fa-pencil-square-o"></span><span class="mtext"> Activity Log </span>
                         </a>
                         <ul class="submenu">
                             <li><a href="{{ route('admin.activity_log') }}">General Settings</a></li>
-                            <li><a href="">User</a></li>
+                            <li><a href="{{ route('admin.user_log') }}">User</a></li>
                         </ul>
                     </li>
 

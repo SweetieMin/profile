@@ -21,9 +21,6 @@ class GeneralSetting extends Model implements Auditable
         'site_favicon',
     ];
 
-    /**
-     * Chỉ định các thuộc tính cần audit
-     */
     public function getAuditInclude(): array
     {
         return [

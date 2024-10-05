@@ -69,14 +69,22 @@ class AuthController extends Controller
                 $request->session()->regenerateToken();
                 return redirect()->route('admin.login')->withInput()->with('fail','Your account is currently pending approval. Please check your email for further instructions or contact at (support@smyth.test) assistance.');
             }
-            
             return redirect()->route('admin.dashboard');
+            
+            
 
         }else{
             //session()->flash('fail','Incorrect credentials');
             return redirect()->route('admin.login')->withInput()->with('fail','Incorrect credentials');
         }
-    }   
+    }
+    
+    public function showAddEmailForm(){
+        $data = [
+            'pageTitle'=> 'Add email'
+        ];
+        return view('back.pages.auth.add-email',$data);
+    }
 
     public function forgotForm(Request $request){
         $data = [

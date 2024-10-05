@@ -19,6 +19,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::controller(AuthController::class)->group(function(){
             Route::get('/login','loginForm')->name('login');
             Route::post('/login','loginHandler')->name('login_handler');
+
             Route::get('/forgot-password','forgotForm')->name('forgot');
             Route::post('/send-password-reset-link','sendPasswordResetLink')->name('send_password_reset_link');
             Route::get('/password/reset/{token}','resetForm')->name('reset_password_form');
@@ -36,7 +37,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/update-logo','updateLogo')->name('update_logo');
             Route::post('/update-favicon','updateFavicon')->name('update_favicon');
 
+            // Activity log
             Route::get('/activity_log','activityLog')->name('activity_log');
+            Route::get('/user_log','userLog')->name('user_log');
+
+            // Manager User
+            Route::get('/list_users','listUsers')->name('list_users');
+
         });
     });
 

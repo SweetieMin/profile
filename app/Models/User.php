@@ -6,14 +6,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use OwenIt\Auditing\Contracts\Auditable;
 
 use App\UserStatus;
 use App\UserType;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Auditable
 {
     use HasFactory, Notifiable;
-
+    use \OwenIt\Auditing\Auditable;
     /**
      * The attributes that are mass assignable.
      *
@@ -29,6 +30,25 @@ class User extends Authenticatable
         'type',
         'status',
     ];
+
+    public function getAuditInclude(): array
+    {
+        return [
+            'name',
+            'password',
+            'username',
+            'type',
+            'status',
+        ];
+    }
+    public function getAuditExclude(): array
+    {
+        return [
+            'email',
+            'picture',
+            'bio',
+        ];
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -132,10 +132,30 @@ class AdminController extends Controller
     public function activityLog(){
         $audits = Audit::where('auditable_type', 'App\Models\GeneralSetting')->get();
         $data = [
-            'pageTitle' => 'Activity Log',
+            'pageTitle' => 'Activity log',
             'audits' => $audits,
         ];
 
         return view('back.pages.activity-log', $data);
+    }
+
+    public function userLog(){
+        $audits = Audit::where('auditable_type', 'App\Models\User')->get();
+        $data = [
+            'pageTitle' => 'User log',
+            'audits' => $audits,
+        ];
+
+        return view('back.pages.user-log', $data);
+    }
+
+    public function listUsers(){
+        $users = User::all();
+        $data = [
+            'pageTitle' => 'List users',
+            'users' => $users,
+        ];
+
+        return view('back.pages.list-users', $data);
     }
 }

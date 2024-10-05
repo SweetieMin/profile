@@ -1,10 +1,10 @@
 @extends('back.layout.pages-layout')
-@section('pageTitle', isset($pageTitle) ? $pageTitle : 'Page Title')
+@section('pageTitle', isset($pageTitle) ? $pageTitle : 'Page pageTitle')
 @section('content')
 
-    @push('stylesheets')
-        <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap4.css">
-    @endpush
+@push('stylesheets')
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap4.css">
+@endpush
 
     <div class="page-header">
         <div class="row">
@@ -18,7 +18,7 @@
                             <a href="{{ route('admin.dashboard') }}">Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            General settings
+                            User settings
                         </li>
                     </ol>
                 </nav>
@@ -29,7 +29,8 @@
         <table id="example" class="table table-striped table-hover" style="width:100%">
             <thead>
                 <tr>
-                    <th>Username</th> <!-- Cột hiển thị tên người dùng -->
+                    <th>Username</th>
+                    <th>Event</th>
                     <th>Old Value</th>
                     <th>New Value</th>
                     <th>Time</th>
@@ -39,11 +40,13 @@
                 @foreach ($audits as $audit)
                     <tr>
                         <td>{{ optional($audit->user)->username ?? 'Unknown' }}</td>
+                        <td>{{ $audit->event }}</td>
                         <td class="text-danger">
                             @foreach ($audit->old_values as $key => $value)
                                 {{ $key }}: {{ $value }} <br>
                             @endforeach
                         </td>
+                        
                         <td class="text-primary">
                             @foreach ($audit->new_values as $key => $value)
                                 {{ $key }}: {{ $value }} <br>
