@@ -1,0 +1,12 @@
+@push('')
+    document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+}, false);
+
+document.onkeydown = function(e) {
+    if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'a')) {
+        return false;
+    }
+};
+
+@push
