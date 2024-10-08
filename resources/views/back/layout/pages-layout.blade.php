@@ -340,12 +340,17 @@
                             <span class="mtext"> Profile </span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('admin.settings') }}" class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}">
-                            <span class="micon fa fa-cogs"></span>
-                            <span class="mtext"> General </span>
-                        </a>
-                    </li>
+                    
+                    @if ( auth()->user()->type->value === 'supperAdmin')
+                        <li>
+                            <a href="{{ route('admin.settings') }}" class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}">
+                                <span class="micon fa fa-cogs"></span>
+                                <span class="mtext"> General </span>
+                            </a>
+                        </li>
+
+                    @endif
+                    
                 </ul>
             </div>
         </div>
