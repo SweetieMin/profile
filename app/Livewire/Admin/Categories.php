@@ -12,6 +12,10 @@ class Categories extends Component
 
     public $pCategory_id, $pCategory_name;
 
+    protected $listeners = [
+        'updateCategoryOrdering'
+    ];
+
     public function addParentCategory(){
         $this->pCategory_id = null;
         $this->pCategory_name = null;
@@ -72,6 +76,17 @@ class Categories extends Component
             $this->dispatch('showToastr',['type'=>'error','message'=>'Something went wrong.']);
         }
 
+    }
+
+    public function updateCategoryOrdering($positions){
+        foreach($positions as $position){
+            $index = $position[0];
+            $new_position = $position[1];
+            ParentCategory::where('id',$index)->update([
+                'ordering'=>$new_position
+            ]);
+            $this->dispatch('showToastr',['type'=>'success','message'=>'Parent categories ordering have been updated successfully.']);
+        }
     }
 
     public function showParentCategoryModalForm(){

@@ -21,11 +21,11 @@
                             <th>N. of categories</th>
                             <th>Actions</th>
                         </thead>
-                        <tbody>
+                        <tbody id="sortable_parent_categories">
 
                             @forelse ($pCategories as $item)
 
-                            <tr>
+                            <tr data-index="{{ $item->id }}" data-ordering="{{ $item->ordering }}">
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>-</td>
@@ -115,8 +115,8 @@
                         <input type="hidden" wire:model="pCategory_id">
                     @endif
                     <div class="form-group">
-                        <label for=""><b>Parent category name</b></label>
-                        <input type="text" class="form-control" wire:model="pCategory_name" placeholder="Enter parent category name here.....">
+                        <label for="pCategory_name"><b>Parent category name</b></label>
+                        <input type="text" class="form-control" id="pCategory_name" wire:model="pCategory_name" placeholder="Enter parent category name here.....">
                         @error('pCategory_name')
                             <span class="text-danger ml-1">{{ $message }}</span>
                         @enderror
