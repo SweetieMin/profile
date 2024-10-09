@@ -26,19 +26,20 @@
                             @forelse ($pCategories as $item)
 
                             <tr data-index="{{ $item->id }}" data-ordering="{{ $item->ordering }}">
-                                <td>{{ $item->id }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>-</td>
                                 <td>
                                     <div class="table-actions">
-                                        <a href="javacript:;" wire:click="editParentCategory({{$item->id}})" class="text-primary mx-2">
+                                        <a href="javascript:;" wire:click="editParentCategory({{$item->id}})" class="text-primary mx-2">
                                             <i class="dw dw-edit2"></i>
                                         </a>
-                                        <a href="" class="text-danger mx-2">
+                                        <a href="javascript:;" wire:click="deleteParentCategory({{$item->id}})" class="text-danger mx-2">
                                             <i class="dw dw-delete-3"></i>
                                         </a>
                                     </div>
                                 </td>
+                                
                             </tr>
                             @empty
                                 <tr>
