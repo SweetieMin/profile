@@ -25,6 +25,11 @@ class ParentCategory extends Model implements Auditable
             ]
         ];
     }
+
+    public function children(){
+        return $this->hasMany(Category::class,'parent','id');
+    }
+
     public function getAuditInclude(): array
     {
         return [

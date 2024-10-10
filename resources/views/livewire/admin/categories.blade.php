@@ -28,7 +28,7 @@
                             <tr data-index="{{ $item->id }}" data-ordering="{{ $item->ordering }}">
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>-</td>
+                                <td>{{ $item->children->count() }}</td>
                                 <td>
                                     <div class="table-actions">
                                         <a href="javascript:;" wire:click="editParentCategory({{$item->id}})" class="text-primary mx-2">
@@ -77,11 +77,10 @@
                         </thead>
                         <tbody>
                             @forelse ($Categories as $item)
-
                             <tr data-index="{{ $item->id }}" data-ordering="{{ $item->ordering }}">
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->parent }}</td>
+                                <td>{{ !is_null($item->parent_category) ? $item->parent_category->name : ' - ' }}</td>
                                 <td>-</td>
                                 <td>
                                     <div class="table-actions">
@@ -162,7 +161,7 @@
                     @endif
                     <div class="form-group">
                         <label for="Category_parent"><b>Parent category</b></label>
-                        <select wire:modal="parent" id="Category_parent" class="custom-select">
+                        <select wire:model="parent" id="Category_parent" class="custom-select">
                             <option value="0">Uncategorized</option>
                             @foreach ($pCategories as $item )
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>

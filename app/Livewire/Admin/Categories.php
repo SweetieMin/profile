@@ -100,7 +100,7 @@ class Categories extends Component
     public function deleteCategoryAction($id){
         $pCategory = ParentCategory::findOrFail($id);
         //check if this parent category as children
-
+        
         //delete parent category
         $delete = $pCategory->delete();
 
@@ -129,6 +129,7 @@ class Categories extends Component
         ]);
 
         //Store category
+
 
         $category = new Category();
         $category->parent = $this->parent;
@@ -171,7 +172,8 @@ class Categories extends Component
     public function render()
     {
         return view('livewire.admin.categories',[
-            'pCategories' => ParentCategory::orderBy('ordering','asc')->get()
+            'pCategories' => ParentCategory::orderBy('ordering','asc')->get(),
+            'Categories' => Category::orderBy('ordering','asc')->get()
         ]);
     }
 }
