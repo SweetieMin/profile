@@ -12,6 +12,9 @@ class Categories extends Component
 
     public $pCategory_id, $pCategory_name;
 
+    public $isUpdateCategoryMode = false;
+    public $category_id, $parent = 0, $category_name;
+
     protected $listeners = [
         'updateCategoryOrdering',
         'deleteCategoryAction'
@@ -109,6 +112,38 @@ class Categories extends Component
         
     }
 
+    public function addCategory(){
+        $this->category_id = null;
+        $this->parent = 0;
+        $this->category_name = null;
+        $this->isUpdateCategoryMode = false;
+        $this->showCategoryModalForm();
+    }
+
+    public function createCategory(){
+        $this->validate([
+            'category_name' => 'required|unique:categories,name,'
+        ],[
+            'category_name.required' => 'Category field is required.',
+            'category_name.unique' => 'Category name is already exists.'
+        ]);
+
+        //Store category
+
+        $category = new Category();
+        $category->parent = $this->parent;
+        $category->name = $this->category_name;
+        $save = $category->save();
+
+        if ($save) {
+            $this->hideCategoryModalForm();
+            $this->dispatch('showToastr',['type'=>'success','message'=>'Category has been created successfully.']);
+        } else {
+            $this->dispatch('showToastr',['type'=>'error','message'=>'Something went wrong.']);
+        }
+        
+    }
+
     public function showParentCategoryModalForm(){
         $this->resetErrorBag();
         $this->dispatch('showParentCategoryModalForm');
@@ -119,6 +154,18 @@ class Categories extends Component
         $this->isUpdateParentCategoryMode = false;
         $this->pCategory_id = $this->pCategory_name = null;
 
+    }
+
+    public function showCategoryModalForm(){
+        $this->resetErrorBag();
+        $this->dispatch('showCategoryModalForm');
+    }
+
+    public function hideCategoryModalForm(){
+        $this->dispatch('hideCategoryModalForm');
+        $this->isUpdateCategoryMode = false;
+        $this->category_id = $this->category_name = null;
+        $this->parent = 0;
     }
 
     public function render()
