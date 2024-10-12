@@ -16,6 +16,7 @@ class Categories extends Component
     public $category_id, $parent = 0, $category_name;
 
     protected $listeners = [
+        'updateParentCategoryOrdering',
         'updateCategoryOrdering',
         'deleteCategoryAction'
     ];
@@ -82,7 +83,7 @@ class Categories extends Component
 
     }
 
-    public function updateCategoryOrdering($positions){
+    public function updateParentCategoryOrdering($positions){
         foreach($positions as $position){
             $index = $position[0];
             $new_position = $position[1];
@@ -90,6 +91,17 @@ class Categories extends Component
                 'ordering'=>$new_position
             ]);
             $this->dispatch('showToastr',['type'=>'success','message'=>'Parent categories ordering have been updated successfully.']);
+        }
+    }
+
+    public function updateCategoryOrdering($positions){
+        foreach($positions as $position){
+            $index = $position[0];
+            $new_position = $position[1];
+            Category::where('id',$index)->update([
+                'ordering'=>$new_position
+            ]);
+            $this->dispatch('showToastr',['type'=>'success','message'=>'Categories ordering have been updated successfully.']);
         }
     }
 

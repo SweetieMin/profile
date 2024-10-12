@@ -75,7 +75,7 @@
                             <th>Name of posts</th>
                             <th>Actions</th>
                         </thead>
-                        <tbody>
+                        <tbody id="sortable_categories">
                             @forelse ($Categories as $item)
                             <tr data-index="{{ $item->id }}" data-ordering="{{ $item->ordering }}">
                                 <td>{{ $loop->iteration }}</td>
