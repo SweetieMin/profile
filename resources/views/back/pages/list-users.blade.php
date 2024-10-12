@@ -52,7 +52,7 @@
         </div>
     </div>
     <div class="pd-20 card-box mb-30">
-        <table id="example" class="table table-striped table-hover" style="width:100%">
+        <table id="datatable" class="table table-striped table-hover" style="width:100%">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                         </td>
-                        
+
                     </tr>
                 @endforeach
 
@@ -104,11 +104,7 @@
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap4.js"></script>
 
-
     <script>
-        new DataTable('#example');
-        $(document).ready(function() {
-            $('.dropdown-toggle').dropdown();
-        });
+        new DataTable('#datatable');
     </script>
 @endpush
