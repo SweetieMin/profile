@@ -100,7 +100,7 @@ class Categories extends Component
     public function deleteCategoryAction($id){
         $pCategory = ParentCategory::findOrFail($id);
         //check if this parent category as children
-        
+
         //delete parent category
         $delete = $pCategory->delete();
 
@@ -142,6 +142,39 @@ class Categories extends Component
         } else {
             $this->dispatch('showToastr',['type'=>'error','message'=>'Something went wrong.']);
         }
+        
+    }
+
+    public function editCategory($id){
+        $category = Category::query()->findOrFail($id);
+        $this->category_id = $category->id;
+        $this->parent = $category->parent;
+        $this->category_name = $category->name;
+        $this->isUpdateCategoryMode = true;
+        $this->showCategoryModalForm();
+    }
+
+    public function updateCategory(){
+        $category = Category::query()->findOrFail($this->category_id);
+        $this->validate([
+            'category_name' => 'required|unique:categories,name,'.$category->id
+        ],[
+            'category_name.required' => 'Category field is required.',
+            'category_name.unique' => 'Category name is already exists.'
+        ]);
+
+        $category->name = $this->category_name;
+        $category->parent = $this->parent;
+        $category->slug = null;
+
+        $update = $category->save();
+
+        if ($update) {
+            $this->hideCategoryModalForm();
+            $this->dispatch('showToastr',['type'=>'success','message'=>'Update category has been created successfully.']);
+        } else {
+            $this->dispatch('showToastr',['type'=>'error','message'=>'Something went wrong.']);
+        }   
         
     }
 

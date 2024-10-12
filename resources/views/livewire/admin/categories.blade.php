@@ -84,10 +84,10 @@
                                 <td>-</td>
                                 <td>
                                     <div class="table-actions">
-                                        <a href="javascript:;" wire:click="editParentCategory({{$item->id}})" class="text-primary mx-2">
+                                        <a href="javascript:;" wire:click="editCategory({{$item->id}})" class="text-primary mx-2">
                                             <i class="dw dw-edit2"></i>
                                         </a>
-                                        <a href="javascript:;" wire:click="deleteParentCategory({{$item->id}})" class="text-danger mx-2">
+                                        <a href="javascript:;" wire:click="deleteCategory({{$item->id}})" class="text-danger mx-2">
                                             <i class="dw dw-delete-3"></i>
                                         </a>
                                     </div>
