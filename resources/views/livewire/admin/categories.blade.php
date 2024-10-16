@@ -23,10 +23,10 @@
                         </thead>
                         <tbody id="sortable_parent_categories">
 
-                            @forelse ($pCategories as $item)
+                            @forelse ($pCategories as $index => $item)
 
                             <tr data-index="{{ $item->id }}" data-ordering="{{ $item->ordering }}">
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $pCategories->firstItem() + $index }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->children->count() }}</td>
                                 <td>
@@ -50,6 +50,9 @@
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+                <div class="d-block mt-1 text-center">
+                    {{ $pCategories->links('livewire::simple-bootstrap') }}
                 </div>
             </div>
         </div>
@@ -76,9 +79,9 @@
                             <th>Actions</th>
                         </thead>
                         <tbody id="sortable_categories">
-                            @forelse ($Categories as $item)
+                            @forelse ($Categories as $index => $item)
                             <tr data-index="{{ $item->id }}" data-ordering="{{ $item->ordering }}">
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $Categories->firstItem() + $index }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ !is_null($item->parent_category) ? $item->parent_category->name : ' - ' }}</td>
                                 <td>-</td>
@@ -103,6 +106,9 @@
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+                <div class="d-block mt-1 text-center">
+                    {{ $Categories->links('livewire::simple-bootstrap') }}
                 </div>
             </div>
         </div>
