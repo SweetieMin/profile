@@ -90,6 +90,24 @@
             allowOutsideClick:false,    
             fontSide:'0.87rem',
             done: function(){
+                Livewire.dispatch('deleteParentCategoryAction',[id]);
+            }
+        });
+    });
+
+    window.addEventListener('deleteCategory',function(event){
+        var id = event.detail[0].id;
+        $().konfirma({
+            title:'Are you sure?',
+            html:'You want to delete this category.',
+            cancelButtonText:'Cancel',
+            confirmButtonText:'Yes, delete',
+            cancelButtonColor:'#d33',
+            confirmButtonColor:'#3085d6',
+            width:320,
+            allowOutsideClick:false,    
+            fontSide:'0.87rem',
+            done: function(){
                 Livewire.dispatch('deleteCategoryAction',[id]);
             }
         });

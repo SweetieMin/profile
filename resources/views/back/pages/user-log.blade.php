@@ -2,9 +2,9 @@
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'Page pageTitle')
 @section('content')
 
-@push('stylesheets')
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap4.css">
-@endpush
+    @push('stylesheets')
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap4.css">
+    @endpush
 
     <div class="page-header">
         <div class="row">
@@ -25,45 +25,47 @@
             </div>
         </div>
     </div>
-    <div class="pd-20 card-box mb-30">
-        <table id="example" class="table table-striped table-hover" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Event</th>
-                    <th>Old Value</th>
-                    <th>New Value</th>
-                    <th>Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($audits as $audit)
-                    <tr>
-                        <td>{{ optional($audit->user)->username ?? 'Unknown' }}</td>
-                        <td>{{ $audit->event }}</td>
-                        <td class="text-danger">
-                            @foreach ($audit->old_values as $key => $value)
-                                {{ $key }}: {{ $value }} <br>
-                            @endforeach
-                        </td>
-                        
-                        <td class="text-primary">
-                            @foreach ($audit->new_values as $key => $value)
-                                {{ $key }}: {{ $value }} <br>
-                            @endforeach
-                        </td>
-                        <td>{{ $audit->created_at }}</td>
-                    </tr>
-                @endforeach
+    <div class="col-12">
+        <div class="pd-20 card-box mb-30">
+            <div class="table-responsive mt-4">
+                <table id="example" class="table table-striped table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Event</th>
+                            <th>Old Value</th>
+                            <th>New Value</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($audits as $audit)
+                            <tr>
+                                <td>{{ optional($audit->user)->username ?? 'Unknown' }}</td>
+                                <td>{{ $audit->event }}</td>
+                                <td class="text-danger">
+                                    @foreach ($audit->old_values as $key => $value)
+                                        {{ $key }}: {{ $value }} <br>
+                                    @endforeach
+                                </td>
 
-            </tbody>
-        </table>
+                                <td class="text-primary">
+                                    @foreach ($audit->new_values as $key => $value)
+                                        {{ $key }}: {{ $value }} <br>
+                                    @endforeach
+                                </td>
+                                <td>{{ $audit->created_at }}</td>
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
 @endsection
 
 @push('scripts')
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>

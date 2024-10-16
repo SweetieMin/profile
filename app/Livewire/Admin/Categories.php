@@ -18,6 +18,7 @@ class Categories extends Component
     protected $listeners = [
         'updateParentCategoryOrdering',
         'updateCategoryOrdering',
+        'deleteParentCategoryAction',
         'deleteCategoryAction'
     ];
 
@@ -105,11 +106,15 @@ class Categories extends Component
         }
     }
 
+    public function deleteCategory($id){
+        $this->dispatch('deleteCategory',['id'=>$id]);
+    }
+
     public function deleteParentCategory($id){
         $this->dispatch('deleteParentCategory',['id'=>$id]);
     }
 
-    public function deleteCategoryAction($id){
+    public function deleteParentCategoryAction($id){
         $pCategory = ParentCategory::findOrFail($id);
         //check if this parent category as children
 
@@ -188,6 +193,17 @@ class Categories extends Component
             $this->dispatch('showToastr',['type'=>'error','message'=>'Something went wrong.']);
         }   
         
+    }
+
+    public function deleteCategoryAction($id){
+        $category = Category::query()->findOrFail($id);
+        $delete = $category->delete();
+
+        if ($delete) {
+            $this->dispatch('showToastr',['type'=>'success','message'=>'Category has been delete successfully.']);
+        } else {
+            $this->dispatch('showToastr',['type'=>'error','message'=>'Something went wrong.']);
+        }
     }
 
     public function showParentCategoryModalForm(){
