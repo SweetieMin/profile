@@ -275,7 +275,8 @@
             <div class="sidebar-menu">
                 <ul id="accordion-menu">
                     <li>
-                        <a href="{{ route('admin.dashboard') }}" class="dropdown-toggle no-arrow {{ Route::is('admin.dashboard') ? 'active' : '' }}">
+                        <a href="{{ route('admin.dashboard') }}"
+                            class="dropdown-toggle no-arrow {{ Route::is('admin.dashboard') ? 'active' : '' }}">
                             <span class="micon"><lord-icon src="https://cdn.lordicon.com/epietrpn.json"
                                     trigger="hover" stroke="light">
                                 </lord-icon></span>
@@ -283,15 +284,20 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.list_users') }}" class="dropdown-toggle no-arrow {{ Route::is('admin.list_users') ? 'active' : '' }}">
+                        <a href="{{ route('admin.list_users') }}"
+                            class="dropdown-toggle no-arrow {{ Route::is('admin.list_users') ? 'active' : '' }}">
                             <span class="micon fa fa-users"></span><span class="mtext">Users</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('admin.categories') }}" class="dropdown-toggle no-arrow {{ Route::is('admin.categories') ? 'active' : '' }}">
-                            <span class="micon fa fa-th-list"></span><span class="mtext">Categories</span>
-                        </a>
-                    </li>
+
+                    @if (auth()->user()->type == 'superAdmin')
+                        <li>
+                            <a href="{{ route('admin.categories') }}"
+                                class="dropdown-toggle no-arrow {{ Route::is('admin.categories') ? 'active' : '' }}">
+                                <span class="micon fa fa-th-list"></span><span class="mtext">Categories</span>
+                            </a>
+                        </li>
+                    @endif
                     <li class="dropdown {{ Route::is('admin.posts*') ? 'active' : '' }}">
                         <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon fa fa-newspaper-o"></span><span class="mtext"> Posts </span>
@@ -301,24 +307,28 @@
                             <li><a href="">Posts</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown {{ Route::is('admin.shop*') ? 'active' : '' }}">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon fa fa-shopping-bag"></span>
-                            <span class="mtext">Shop</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a href="">New product</a></li>
-                            <li><a href="">All products</a></li>
-                        </ul>
-                    </li>
+                    @if (auth()->user()->type === 'superAdmin')
+                        <li class="dropdown {{ Route::is('admin.shop*') ? 'active' : '' }}">
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <span class="micon fa fa-shopping-bag"></span>
+                                <span class="mtext">Shop</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="">New product</a></li>
+                                <li><a href="">All products</a></li>
+                            </ul>
+                        </li>
+                    @endif
                     <li>
-                        <a href="invoice.html" class="dropdown-toggle no-arrow {{ Route::is('admin.invoice') ? 'active' : '' }}">
+                        <a href="invoice.html"
+                            class="dropdown-toggle no-arrow {{ Route::is('admin.invoice') ? 'active' : '' }}">
                             <span class="micon bi bi-receipt-cutoff"></span><span class="mtext">Invoice</span>
                         </a>
                     </li>
-        
+
                     <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle {{ Route::is('admin.activity_log*') || Route::is('admin.user_log*') ? 'active' : '' }}">
+                        <a href="javascript:;"
+                            class="dropdown-toggle {{ Route::is('admin.activity_log*') || Route::is('admin.user_log*') ? 'active' : '' }}">
                             <span class="micon">
                                 <lord-icon src="https://cdn.lordicon.com/lsrcesku.json" trigger="hover"
                                     stroke="light">
@@ -326,11 +336,14 @@
                             </span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="{{ route('admin.activity_log') }}" class="{{ Route::is('admin.activity_log') ? 'active' : '' }}">General Settings</a></li>
-                            <li><a href="{{ route('admin.user_log') }}" class="{{ Route::is('admin.user_log') ? 'active' : '' }}">User</a></li>
+                            <li><a href="{{ route('admin.activity_log') }}"
+                                    class="{{ Route::is('admin.activity_log') ? 'active' : '' }}">General Settings</a>
+                            </li>
+                            <li><a href="{{ route('admin.user_log') }}"
+                                    class="{{ Route::is('admin.user_log') ? 'active' : '' }}">User</a></li>
                         </ul>
                     </li>
-        
+
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>
@@ -338,26 +351,27 @@
                         <div class="sidebar-small-cap">Settings</div>
                     </li>
                     <li>
-                        <a href="{{ route('admin.profile') }}" class="dropdown-toggle no-arrow {{ Route::is('admin.profile') ? 'active' : '' }}">
+                        <a href="{{ route('admin.profile') }}"
+                            class="dropdown-toggle no-arrow {{ Route::is('admin.profile') ? 'active' : '' }}">
                             <span class="micon fa fa-user-circle"></span>
                             <span class="mtext"> Profile </span>
                         </a>
                     </li>
-                    
-                    @if ( auth()->user()->type->value === 'supperAdmin')
+
+                    @if (auth()->user()->type === 'superAdmin')
                         <li>
-                            <a href="{{ route('admin.settings') }}" class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}">
+                            <a href="{{ route('admin.settings') }}"
+                                class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}">
                                 <span class="micon fa fa-cogs"></span>
                                 <span class="mtext"> General </span>
                             </a>
                         </li>
-
                     @endif
-                    
+
                 </ul>
             </div>
         </div>
-        
+
     </div>
     <div class="mobile-menu-overlay"></div>
 

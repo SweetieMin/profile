@@ -82,4 +82,8 @@ class User extends Authenticatable implements Auditable
     public function social_links(){
         return $this->belongsTo(UserSocialLink::class,'id','user_id');
     }
+
+    public function getTypeAttribute($value){
+        return $value;
+    }
 }

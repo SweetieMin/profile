@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'email'=> 'admin@email.com',
             'username' => 'admin',
             'password' => Hash::make('12345'),
-            'type'=> UserType::SupperAdmin,
+            'type'=> UserType::SuperAdmin,
             'status' =>UserStatus::Active,
         ]);
     }
